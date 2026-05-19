@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(identify /Users/semenprelovskij/Desktop/syomych-site/public/assets/map-route.jpg)",
+      "Bash(sed -n '23,30p' /Users/semenprelovskij/Desktop/syomych-site/src/styles/app.css)",
+      "Bash(sed -n '137,145p' /Users/semenprelovskij/Desktop/syomych-site/src/styles/app.css)",
+      "Bash(sed -n '644,680p' /Users/semenprelovskij/Desktop/syomych-site/src/styles/app.css)",
+      "Bash(sed -n '300,320p' /Users/semenprelovskij/Desktop/syomych-site/src/styles/app.css)",
+      "Bash(sed -n '540,600p' /Users/semenprelovskij/Desktop/syomych-site/src/styles/app.css)"
+    ]
+  }
+}

@@ -3,8 +3,8 @@ import { Logo, Button, ArrowRight } from './atoms.jsx';
 
 const NAV = [
   { label: 'Как это работает', href: '#steps' },
-  { label: 'Студия', href: '#studio' },
   { label: 'Форматы', href: '#formats' },
+  { label: 'Студия', href: '#studio' },
   { label: 'Цены', href: '#pricing' },
   { label: 'FAQ', href: '#faq' },
 ];

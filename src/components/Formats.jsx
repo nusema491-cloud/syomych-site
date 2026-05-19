@@ -7,7 +7,7 @@ export default function Formats() {
             className="format-card__bg"
             src="/assets/photos-web/girl-portrait-color.jpeg"
             alt="Цветное фото"
-            style={{ objectFit: 'cover', objectPosition: 'center 65%', width: '100%', height: '100%' }}
+            style={{ objectFit: 'cover', objectPosition: 'center 18%', width: '100%', height: '100%' }}
           />
           <div className="format-card__scrim" />
           <div className="format-card__content">
@@ -22,7 +22,7 @@ export default function Formats() {
             className="format-card__bg"
             src="/assets/photos-web/portrait-blonde-bw.jpg"
             alt="Чёрно-белое фото"
-            style={{ objectFit: 'cover', objectPosition: 'center 45%', width: '100%', height: '100%' }}
+            style={{ objectFit: 'cover', objectPosition: 'center 40%', width: '100%', height: '100%', filter: 'brightness(1.15)' }}
           />
           <div className="format-card__scrim" />
           <div className="format-card__content">

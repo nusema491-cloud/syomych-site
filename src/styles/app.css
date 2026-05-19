@@ -126,6 +126,9 @@ ul, ol { list-style: none; }
   display: flex;
   align-items: center;
   gap: var(--sp-xl);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .header__nav a {
   font-size: 14px;
@@ -1237,6 +1240,21 @@ ul, ol { list-style: none; }
 .statusstrip__ip {
   font-size: 11px;
   color: rgba(255,255,255,0.25);
+}
+.statusstrip__legal {
+  display: flex;
+  gap: var(--sp-md);
+  margin-top: 4px;
+}
+.statusstrip__legal-link {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--t-fast);
+}
+.statusstrip__legal-link:hover {
+  color: rgba(255,255,255,0.55);
 }
 .cal-day.empty { pointer-events: none; }
 

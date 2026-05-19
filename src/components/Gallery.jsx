@@ -10,23 +10,49 @@ const PHOTOS = [
   { src: '/assets/photos-web/portrait-group-4.jpg', alt: 'Семья' },
 ];
 
-const PER_PAGE = 3;
-const MAX_INDEX = PHOTOS.length - PER_PAGE;
+const GAP = 16;
+
+function getPerPage() {
+  if (typeof window === 'undefined') return 3;
+  if (window.innerWidth <= 500) return 1;
+  if (window.innerWidth <= 768) return 2;
+  return 3;
+}
 
 export default function Gallery() {
   const [index, setIndex] = useState(0);
-  const [lightbox, setLightbox] = useState(null); // индекс открытого фото
+  const [perPage, setPerPage] = useState(getPerPage);
+  const [slideWidth, setSlideWidth] = useState(0);
+  const [lightbox, setLightbox] = useState(null);
+
+  const trackWrapRef = useRef(null);
   const dragStart = useRef(null);
 
-  const prev = () => setIndex((i) => Math.max(0, i - 1));
-  const next = () => setIndex((i) => Math.min(MAX_INDEX, i + 1));
+  const maxIndex = PHOTOS.length - perPage;
+
+  // Измеряем реальную ширину слайда после рендера и при ресайзе
+  useEffect(() => {
+    const measure = () => {
+      if (!trackWrapRef.current) return;
+      const slide = trackWrapRef.current.querySelector('.gallery__slide');
+      if (slide) setSlideWidth(slide.offsetWidth + GAP);
+      const newPerPage = getPerPage();
+      setPerPage(newPerPage);
+      setIndex(i => Math.min(i, PHOTOS.length - newPerPage));
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  const prev = () => setIndex(i => Math.max(0, i - 1));
+  const next = () => setIndex(i => Math.min(maxIndex, i + 1));
 
   const openLightbox = (i) => setLightbox(i);
   const closeLightbox = () => setLightbox(null);
-  const lightboxPrev = () => setLightbox((i) => Math.max(0, i - 1));
-  const lightboxNext = () => setLightbox((i) => Math.min(PHOTOS.length - 1, i + 1));
+  const lightboxPrev = () => setLightbox(i => Math.max(0, i - 1));
+  const lightboxNext = () => setLightbox(i => Math.min(PHOTOS.length - 1, i + 1));
 
-  // Закрытие по Escape, стрелки влево/вправо
   useEffect(() => {
     if (lightbox === null) return;
     const onKey = (e) => {
@@ -67,6 +93,7 @@ export default function Gallery() {
         </div>
 
         <div
+          ref={trackWrapRef}
           className="gallery__track-wrap"
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}
@@ -75,7 +102,7 @@ export default function Gallery() {
         >
           <div
             className="gallery__track"
-            style={{ transform: `translateX(calc(-${index} * (100% / 3 + 16px / 3 + 16px / 9)))` }}
+            style={{ transform: slideWidth ? `translateX(-${index * slideWidth}px)` : 'none' }}
           >
             {PHOTOS.map((p, i) => (
               <div
@@ -84,7 +111,12 @@ export default function Gallery() {
                 onClick={() => openLightbox(i)}
                 style={{ cursor: 'zoom-in' }}
               >
-                <img src={p.src} alt={p.alt} draggable={false} style={p.position ? { objectPosition: p.position } : undefined} />
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  draggable={false}
+                  style={p.position ? { objectPosition: p.position } : undefined}
+                />
               </div>
             ))}
           </div>
@@ -92,7 +124,7 @@ export default function Gallery() {
 
         <div className="gallery__controls container">
           <div className="gallery__dots">
-            {Array.from({ length: MAX_INDEX + 1 }).map((_, i) => (
+            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
               <button
                 key={i}
                 className={`gallery__dot${i === index ? ' active' : ''}`}
@@ -102,12 +134,8 @@ export default function Gallery() {
             ))}
           </div>
           <div className="gallery__arrows">
-            <button className="gallery__arrow" onClick={prev} disabled={index === 0} aria-label="Назад">
-              ←
-            </button>
-            <button className="gallery__arrow" onClick={next} disabled={index === MAX_INDEX} aria-label="Вперёд">
-              →
-            </button>
+            <button className="gallery__arrow" onClick={prev} disabled={index === 0} aria-label="Назад">←</button>
+            <button className="gallery__arrow" onClick={next} disabled={index === maxIndex} aria-label="Вперёд">→</button>
           </div>
         </div>
       </section>
@@ -115,105 +143,23 @@ export default function Gallery() {
       {/* Лайтбокс */}
       {lightbox !== null && (
         <div
-          className="lightbox"
           onClick={closeLightbox}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 1000,
-            background: 'rgba(17,17,17,0.95)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(17,17,17,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          {/* Кнопка закрыть */}
-          <button
-            onClick={closeLightbox}
-            style={{
-              position: 'absolute',
-              top: '20px',
-              right: '24px',
-              background: 'none',
-              border: 'none',
-              color: '#F7F4EF',
-              fontSize: '32px',
-              cursor: 'pointer',
-              lineHeight: 1,
-              opacity: 0.8,
-            }}
-            aria-label="Закрыть"
-          >
-            ×
-          </button>
-
-          {/* Стрелка влево */}
+          <button onClick={closeLightbox} style={{ position: 'absolute', top: '20px', right: '24px', background: 'none', border: 'none', color: '#F7F4EF', fontSize: '32px', cursor: 'pointer', opacity: 0.8 }} aria-label="Закрыть">×</button>
           {lightbox > 0 && (
-            <button
-              onClick={(e) => { e.stopPropagation(); lightboxPrev(); }}
-              style={{
-                position: 'absolute',
-                left: '20px',
-                background: 'none',
-                border: 'none',
-                color: '#F7F4EF',
-                fontSize: '36px',
-                cursor: 'pointer',
-                opacity: 0.8,
-                padding: '12px',
-              }}
-              aria-label="Назад"
-            >
-              ←
-            </button>
+            <button onClick={(e) => { e.stopPropagation(); lightboxPrev(); }} style={{ position: 'absolute', left: '20px', background: 'none', border: 'none', color: '#F7F4EF', fontSize: '36px', cursor: 'pointer', opacity: 0.8, padding: '12px' }} aria-label="Назад">←</button>
           )}
-
-          {/* Фото */}
           <img
             src={PHOTOS[lightbox].src}
             alt={PHOTOS[lightbox].alt}
             onClick={(e) => e.stopPropagation()}
-            style={{
-              maxWidth: '90vw',
-              maxHeight: '90vh',
-              objectFit: 'contain',
-              borderRadius: '8px',
-              boxShadow: '0 24px 80px rgba(0,0,0,0.6)',
-            }}
+            style={{ maxWidth: '90vw', maxHeight: '90vh', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 24px 80px rgba(0,0,0,0.6)' }}
           />
-
-          {/* Стрелка вправо */}
           {lightbox < PHOTOS.length - 1 && (
-            <button
-              onClick={(e) => { e.stopPropagation(); lightboxNext(); }}
-              style={{
-                position: 'absolute',
-                right: '20px',
-                background: 'none',
-                border: 'none',
-                color: '#F7F4EF',
-                fontSize: '36px',
-                cursor: 'pointer',
-                opacity: 0.8,
-                padding: '12px',
-              }}
-              aria-label="Вперёд"
-            >
-              →
-            </button>
+            <button onClick={(e) => { e.stopPropagation(); lightboxNext(); }} style={{ position: 'absolute', right: '20px', background: 'none', border: 'none', color: '#F7F4EF', fontSize: '36px', cursor: 'pointer', opacity: 0.8, padding: '12px' }} aria-label="Вперёд">→</button>
           )}
-
-          {/* Счётчик */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '20px',
-              color: '#F7F4EF',
-              opacity: 0.5,
-              fontSize: '14px',
-              letterSpacing: '0.05em',
-            }}
-          >
+          <div style={{ position: 'absolute', bottom: '20px', color: '#F7F4EF', opacity: 0.5, fontSize: '14px', letterSpacing: '0.05em' }}>
             {lightbox + 1} / {PHOTOS.length}
           </div>
         </div>

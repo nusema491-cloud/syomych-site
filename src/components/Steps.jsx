@@ -142,21 +142,53 @@ function StepRemote() {
   );
 }
 
-/* ── Result silhouettes ── */
+/* ── Result notification ── */
 function StepResult() {
   return (
-    <div style={{ width: '100%' }}>
-      <div className="silhouettes" style={{ justifyContent: 'center' }}>
-        <div className="silhouette" />
-        <div className="silhouette" />
-        <div className="silhouette" />
+    <div style={{
+      width: '100%',
+      border: '1px solid rgba(207,196,184,0.15)',
+      borderRadius: '12px',
+      overflow: 'hidden',
+      fontFamily: "'Inter', sans-serif",
+    }}>
+      {/* Notification header */}
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '10px 14px',
+        borderBottom: '1px solid rgba(207,196,184,0.1)',
+        background: 'rgba(255,255,255,0.03)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '14px' }}>📷</span>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: '#F7F4EF', letterSpacing: '0.04em' }}>Съёмыч</span>
+        </div>
+        <span style={{ fontSize: '10px', color: 'rgba(207,196,184,0.4)' }}>сейчас</span>
       </div>
-      <div className="result-progress">
-        <div className="result-progress__fill" />
+
+      {/* Notification body */}
+      <div style={{ padding: '14px', background: 'rgba(255,255,255,0.02)' }}>
+        <div style={{ fontSize: '13px', fontWeight: 600, color: '#F7F4EF', marginBottom: '4px' }}>
+          Ваши фото готовы
+        </div>
+        <div style={{ fontSize: '12px', color: 'rgba(207,196,184,0.55)', lineHeight: 1.5 }}>
+          Ссылка на архив уже у вас — через 24 ч после съёмки
+        </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6, fontSize: 10, color: 'rgba(255,255,255,0.35)' }}>
-        <span>Обработка</span>
-        <span>72%</span>
+
+      {/* CTA row */}
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '10px 14px',
+        borderTop: '1px solid rgba(207,196,184,0.1)',
+        background: 'rgba(255,255,255,0.02)',
+      }}>
+        <span style={{ fontSize: '10px', color: 'rgba(207,196,184,0.35)', letterSpacing: '0.04em' }}>
+          Ссылка действует 14 дней
+        </span>
+        <span style={{ fontSize: '11px', fontWeight: 600, color: '#B86B4B', letterSpacing: '0.04em' }}>
+          Скачать →
+        </span>
       </div>
     </div>
   );

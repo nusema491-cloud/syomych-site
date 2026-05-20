@@ -61,36 +61,85 @@ function StepBooking() {
 /* ── Studio diagram SVG ── */
 function StepStudio() {
   return (
-    <svg className="studio-diagram" viewBox="0 0 280 160" fill="none">
-      {/* Floor */}
-      <rect x="10" y="130" width="260" height="4" rx="2" fill="rgba(255,255,255,0.06)" />
-      {/* Backdrop */}
-      <rect x="30" y="20" width="8" height="114" rx="2" fill="rgba(255,255,255,0.15)" />
-      <path d="M38 20 Q100 18 160 22 L160 130 Q100 130 38 130Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-      {/* Camera + tripod */}
-      <line x1="210" y1="130" x2="200" y2="90" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-      <line x1="210" y1="130" x2="220" y2="90" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-      <line x1="210" y1="130" x2="210" y2="90" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-      <rect x="200" y="80" width="20" height="14" rx="3" fill="#B86B4B" opacity="0.9" />
-      <rect x="218" y="85" width="5" height="4" rx="1" fill="#B86B4B" />
-      <circle cx="210" cy="87" r="3" fill="#111111" />
-      {/* Softbox left */}
-      <line x1="60" y1="10" x2="70" y2="60" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-      <polygon points="50,8 80,8 75,55 55,55" fill="rgba(184,107,75,0.14)" stroke="rgba(184,107,75,0.45)" strokeWidth="1" />
-      {/* Beauty dish right */}
-      <line x1="170" y1="15" x2="165" y2="55" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-      <circle cx="165" cy="42" r="14" fill="rgba(184,107,75,0.1)" stroke="rgba(184,107,75,0.4)" strokeWidth="1" />
-      <circle cx="165" cy="42" r="5" fill="rgba(184,107,75,0.35)" />
-      {/* Light rays */}
-      <line x1="65" y1="55" x2="100" y2="75" stroke="rgba(184,107,75,0.2)" strokeWidth="1" strokeDasharray="3 3" />
-      <line x1="165" y1="56" x2="130" y2="75" stroke="rgba(184,107,75,0.2)" strokeWidth="1" strokeDasharray="3 3" />
-      {/* Subject silhouette */}
-      <circle cx="110" cy="68" r="10" fill="rgba(255,255,255,0.18)" />
-      <rect x="102" y="78" width="16" height="38" rx="4" fill="rgba(255,255,255,0.12)" />
-      {/* Labels */}
-      <text x="210" y="76" fontSize="8" fill="rgba(184,107,75,0.8)" textAnchor="middle">КАМЕРА</text>
-      <text x="62" y="5" fontSize="8" fill="rgba(184,107,75,0.65)" textAnchor="middle">SOFТ</text>
-      <text x="165" y="12" fontSize="8" fill="rgba(184,107,75,0.65)" textAnchor="middle">BEAUTY</text>
+    <svg className="studio-diagram" viewBox="0 0 320 200" fill="none" style={{ width: '100%', height: 'auto' }}>
+      {/* Backdrop frame — top bar */}
+      <line x1="80" y1="18" x2="240" y2="18" stroke="rgba(255,255,255,0.35)" strokeWidth="2" />
+      {/* Backdrop frame — left pole */}
+      <line x1="80" y1="18" x2="80" y2="148" stroke="rgba(255,255,255,0.35)" strokeWidth="2" />
+      {/* Backdrop frame — right pole */}
+      <line x1="240" y1="18" x2="240" y2="148" stroke="rgba(255,255,255,0.35)" strokeWidth="2" />
+      {/* Backdrop fill */}
+      <rect x="80" y="18" width="160" height="130" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+      {/* Left stand base */}
+      <line x1="68" y1="148" x2="80" y2="148" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+      <line x1="92" y1="148" x2="80" y2="148" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+      {/* Right stand base */}
+      <line x1="228" y1="148" x2="240" y2="148" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+      <line x1="252" y1="148" x2="240" y2="148" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+
+      {/* Person — head */}
+      <circle cx="160" cy="68" r="14" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" />
+      {/* Person — body */}
+      <path d="M145 82 Q145 120 155 125 L165 125 Q175 120 175 82 Z" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
+      {/* Person — arms */}
+      <line x1="145" y1="92" x2="133" y2="110" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
+      <line x1="175" y1="92" x2="187" y2="110" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
+      {/* Person — legs */}
+      <line x1="155" y1="125" x2="150" y2="148" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
+      <line x1="165" y1="125" x2="170" y2="148" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
+      {/* Stool */}
+      <line x1="148" y1="148" x2="172" y2="148" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
+      <line x1="152" y1="148" x2="148" y2="165" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+      <line x1="168" y1="148" x2="172" y2="165" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+
+      {/* LEFT SOFTBOX */}
+      {/* stand */}
+      <line x1="38" y1="165" x2="48" y2="55" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+      <line x1="28" y1="165" x2="38" y2="165" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+      <line x1="48" y1="165" x2="38" y2="165" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+      {/* softbox shape */}
+      <polygon points="30,30 66,38 62,62 26,54" fill="rgba(184,107,75,0.12)" stroke="rgba(184,107,75,0.55)" strokeWidth="1.2" />
+      {/* dashed ray to person */}
+      <line x1="66" y1="50" x2="147" y2="80" stroke="rgba(184,107,75,0.45)" strokeWidth="1" strokeDasharray="4 3" />
+
+      {/* RIGHT FILL PANEL */}
+      {/* stand */}
+      <line x1="282" y1="165" x2="272" y2="55" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+      <line x1="272" y1="165" x2="282" y2="165" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+      <line x1="292" y1="165" x2="282" y2="165" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" />
+      {/* panel shape */}
+      <rect x="260" y="32" width="24" height="38" rx="3" fill="rgba(184,107,75,0.08)" stroke="rgba(184,107,75,0.5)" strokeWidth="1.2" />
+      <line x1="268" y1="32" x2="268" y2="70" stroke="rgba(184,107,75,0.2)" strokeWidth="0.8" />
+      <line x1="276" y1="32" x2="276" y2="70" stroke="rgba(184,107,75,0.2)" strokeWidth="0.8" />
+      {/* dashed ray to person */}
+      <line x1="260" y1="51" x2="173" y2="80" stroke="rgba(184,107,75,0.45)" strokeWidth="1" strokeDasharray="4 3" />
+
+      {/* CAMERA + tripod */}
+      <line x1="160" y1="185" x2="148" y2="168" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+      <line x1="160" y1="185" x2="172" y2="168" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+      <line x1="160" y1="185" x2="160" y2="168" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+      <rect x="150" y="156" width="20" height="13" rx="2.5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+      <circle cx="160" cy="162" r="4" fill="none" stroke="rgba(184,107,75,0.8)" strokeWidth="1.2" />
+      <rect x="168" y="159" width="5" height="5" rx="1" fill="rgba(255,255,255,0.2)" />
+      {/* dashed ray from camera up */}
+      <line x1="160" y1="156" x2="160" y2="128" stroke="rgba(184,107,75,0.45)" strokeWidth="1" strokeDasharray="4 3" />
+
+      {/* LEFT label — КЛЮЧЕВОЙ СВЕТ */}
+      <circle cx="14" cy="92" r="10" fill="none" stroke="rgba(184,107,75,0.5)" strokeWidth="1" />
+      <text x="14" y="96" fontSize="9" fill="rgba(184,107,75,0.9)" textAnchor="middle">☀</text>
+      <text x="14" y="108" fontSize="6.5" fill="rgba(184,107,75,0.9)" textAnchor="middle" fontWeight="600" letterSpacing="0.04em">КЛЮЧЕВОЙ</text>
+      <text x="14" y="116" fontSize="6.5" fill="rgba(184,107,75,0.9)" textAnchor="middle" fontWeight="600" letterSpacing="0.04em">СВЕТ</text>
+
+      {/* RIGHT label — ЗАПОЛНЯЮЩИЙ СВЕТ */}
+      <circle cx="306" cy="92" r="10" fill="none" stroke="rgba(184,107,75,0.5)" strokeWidth="1" />
+      <line x1="300" y1="86" x2="312" y2="98" stroke="rgba(184,107,75,0.7)" strokeWidth="1" />
+      <line x1="300" y1="92" x2="312" y2="92" stroke="rgba(184,107,75,0.7)" strokeWidth="1" />
+      <line x1="300" y1="98" x2="312" y2="86" stroke="rgba(184,107,75,0.7)" strokeWidth="1" />
+      <text x="306" y="108" fontSize="6.5" fill="rgba(184,107,75,0.9)" textAnchor="middle" fontWeight="600" letterSpacing="0.04em">ЗАПОЛН.</text>
+      <text x="306" y="116" fontSize="6.5" fill="rgba(184,107,75,0.9)" textAnchor="middle" fontWeight="600" letterSpacing="0.04em">СВЕТ</text>
+
+      {/* BOTTOM label — КАМЕРА */}
+      <text x="160" y="197" fontSize="6.5" fill="rgba(184,107,75,0.9)" textAnchor="middle" fontWeight="600" letterSpacing="0.06em">КАМЕРА</text>
     </svg>
   );
 }
@@ -144,8 +193,8 @@ const STEPS = [
   },
   {
     num: '02',
-    title: 'Настрой студию',
-    desc: 'Два источника света, камера на штативе, нейтральный задник — всё уже готово.',
+    title: 'Студия уже настроена',
+    desc: 'Свет, камера и фон готовы заранее — тебе остаётся встать в кадр и взять пульт.',
     Visual: StepStudio,
   },
   {

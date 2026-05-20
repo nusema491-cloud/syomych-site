@@ -160,7 +160,7 @@ function StepResult() {
         background: 'rgba(255,255,255,0.03)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '14px' }}>📷</span>
+          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#B86B4B', display: 'inline-block', flexShrink: 0 }} />
           <span style={{ fontSize: '11px', fontWeight: 700, color: '#F7F4EF', letterSpacing: '0.04em' }}>Съёмыч</span>
         </div>
         <span style={{ fontSize: '10px', color: 'rgba(207,196,184,0.4)' }}>сейчас</span>

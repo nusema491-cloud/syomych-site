@@ -58,31 +58,65 @@ function StepBooking() {
   );
 }
 
-/* ── Studio equipment list ── */
+/* ── Studio status panel ── */
 function StepStudio() {
-  const items = [
-    { icon: '◉', label: 'Ключевой свет', desc: 'Освещает лицо и создаёт объём' },
-    { icon: '◎', label: 'Заполняющий свет', desc: 'Смягчает тени и выравнивает свет' },
-    { icon: '⊙', label: 'Камера', desc: 'На штативе, пульт у тебя' },
+  const rows = [
+    { param: 'ОСВЕЩЕНИЕ', status: 'НАСТРОЕНО' },
+    { param: 'КАМЕРА',    status: 'НА ШТАТИВЕ' },
+    { param: 'ФОН',       status: 'УСТАНОВЛЕН' },
   ];
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-      {items.map((item) => (
-        <div key={item.label} style={{
-          display: 'flex', alignItems: 'center', gap: '14px',
+    <div style={{
+      width: '100%',
+      border: '1px solid rgba(207,196,184,0.15)',
+      borderRadius: '12px',
+      overflow: 'hidden',
+      fontFamily: "'Inter', monospace",
+    }}>
+      {/* Header */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: '8px',
+        padding: '10px 16px',
+        borderBottom: '1px solid rgba(207,196,184,0.1)',
+        background: 'rgba(255,255,255,0.03)',
+      }}>
+        <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#B86B4B', display: 'inline-block', flexShrink: 0 }} />
+        <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', color: 'rgba(207,196,184,0.6)', textTransform: 'uppercase' }}>
+          Статус студии
+        </span>
+      </div>
+
+      {/* Rows */}
+      {rows.map((r, i) => (
+        <div key={r.param} style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '12px 16px',
-          borderRadius: '10px',
-          border: '1px solid rgba(207,196,184,0.12)',
-          background: 'rgba(255,255,255,0.02)',
-          borderLeft: '2px solid #B86B4B',
+          borderBottom: i < rows.length - 1 ? '1px solid rgba(207,196,184,0.07)' : 'none',
         }}>
-          <span style={{ fontSize: '20px', color: '#B86B4B', lineHeight: 1, flexShrink: 0 }}>{item.icon}</span>
-          <div>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#F7F4EF', letterSpacing: '0.07em', textTransform: 'uppercase' }}>{item.label}</div>
-            <div style={{ fontSize: '12px', color: 'rgba(247,244,239,0.45)', marginTop: '3px', lineHeight: 1.4 }}>{item.desc}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#B86B4B', display: 'inline-block', flexShrink: 0 }} />
+            <span style={{ fontSize: '11px', fontWeight: 500, color: 'rgba(247,244,239,0.5)', letterSpacing: '0.08em' }}>
+              {r.param}
+            </span>
           </div>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: '#F7F4EF', letterSpacing: '0.06em' }}>
+            {r.status}
+          </span>
         </div>
       ))}
+
+      {/* Footer */}
+      <div style={{
+        padding: '10px 16px',
+        borderTop: '1px solid rgba(207,196,184,0.1)',
+        background: 'rgba(255,255,255,0.02)',
+        fontSize: '11px',
+        color: 'rgba(207,196,184,0.4)',
+        letterSpacing: '0.04em',
+        fontStyle: 'italic',
+      }}>
+        Осталось только зайти
+      </div>
     </div>
   );
 }

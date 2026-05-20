@@ -5,7 +5,7 @@ export default function Formats() {
         <div className="format-card">
           <img
             className="format-card__bg"
-            src="/assets/photos-web/girl-portrait-color.jpeg"
+            src="/assets/photos-web/mom-and-son.jpeg"
             alt="Цветное фото"
             style={{ objectFit: 'cover', objectPosition: 'center 18%', width: '100%', height: '100%' }}
           />

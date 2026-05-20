@@ -23,7 +23,7 @@ export default function Hero() {
           <RecDot /> РЕЖИМ АВТОПОРТРЕТА
         </div>
         <h1 className="hero__title">
-          Фотостудия автопортрета в&nbsp;самом сердце столицы.
+          Фотостудия автопортрета в&nbsp;самом сердце столицы
         </h1>
         <p className="hero__subtitle">
           Свет настроен. Камера готова. Пульт у&nbsp;тебя.

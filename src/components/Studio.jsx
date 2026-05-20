@@ -23,7 +23,7 @@ export default function Studio() {
 
           <div className="studio__info" style={{ flex: 1 }}>
             <div className="section__label">Студия</div>
-            <h2 className="section__title">Профессиональный свет. Ничего лишнего.</h2>
+            <h2 className="section__title">Профессиональный свет. Ничего лишнего</h2>
             <p className="studio__body">
               Компактная, но полноценная студия в центре Москвы. Два источника
               постоянного света с&nbsp;регулировкой, камера на&nbsp;штативе,

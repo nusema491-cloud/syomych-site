@@ -5,7 +5,7 @@ const PHOTOS = [
   { src: '/assets/photos-web/zoomer.jpg', alt: 'Портрет' },
   { src: '/assets/photos-web/single-lady-bw.jpg', alt: 'Портрет' },
   { src: '/assets/photos-web/asian-guy-2.jpg', alt: 'Портрет' },
-  { src: '/assets/photos-web/mom-and-son.jpeg', alt: 'Портрет' },
+  { src: '/assets/photos-web/girl-portrait-color.jpeg', alt: 'Портрет' },
   { src: '/assets/photos-web/portrait-father-daughter.jpg', alt: 'Портрет' },
   { src: '/assets/photos-web/portrait-group-4.jpg', alt: 'Семья' },
 ];
